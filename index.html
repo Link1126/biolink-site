@@ -2,11 +2,207 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>BioLink</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BioLink · 敬畏每一滴生命的纯粹</title>
+<meta name="description" content="BioLink 智能水族设备：智能自动补水器与滴定泵。敬畏每一滴生命的纯粹。">
+<style>
+  :root {
+    --teal: #0e6b62;
+    --teal-deep: #0a4f49;
+    --teal-soft: #e3f0ee;
+    --ink: #1c2422;
+    --muted: #5c6b68;
+    --line: #dce6e3;
+    --paper: #f7f9f8;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+  }
+  a { color: var(--teal); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand svg { display: block; }
+  .brand b { font-size: 22px; letter-spacing: .04em; }
+  .brand small { display: block; font-size: 11px; color: var(--muted); letter-spacing: .28em; margin-top: -4px; }
+  header nav a {
+    text-decoration: none; color: var(--ink); font-size: 14px; margin-left: 22px;
+    border-bottom: 2px solid transparent; padding-bottom: 2px;
+  }
+  header nav a:hover { border-color: var(--teal); }
+
+  .hero {
+    background: linear-gradient(135deg, var(--teal-deep), var(--teal) 60%, #12877c);
+    color: #fff; border-radius: 20px; padding: 56px 40px; margin: 10px 0 36px;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; right: -70px; bottom: -110px; width: 300px; height: 300px;
+    border: 2px solid rgba(255,255,255,.14); border-radius: 50%;
+  }
+  .hero::before {
+    content: ""; position: absolute; right: 60px; bottom: -60px; width: 170px; height: 170px;
+    border: 2px solid rgba(255,255,255,.12); border-radius: 50%;
+  }
+  .hero h1 { font-size: 40px; line-height: 1.35; letter-spacing: .02em; position: relative; z-index: 1; }
+  .hero p { margin-top: 14px; font-size: 16px; color: #d8ece9; max-width: 560px; position: relative; z-index: 1; }
+  .hero .cta { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn {
+    display: inline-block; text-decoration: none; font-size: 15px; padding: 10px 22px;
+    border-radius: 999px; font-weight: 600;
+  }
+  .btn-light { background: #fff; color: var(--teal-deep); }
+  .btn-ghost { border: 1.5px solid rgba(255,255,255,.75); color: #fff; }
+
+  h2 { font-size: 24px; margin: 8px 0 6px; }
+  .section-sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 40px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 26px 24px; display: flex; flex-direction: column;
+  }
+  .card .tag {
+    align-self: flex-start; font-size: 12px; font-weight: 600; color: var(--teal);
+    background: var(--teal-soft); border-radius: 999px; padding: 3px 12px; margin-bottom: 12px;
+  }
+  .card h3 { font-size: 20px; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+  .chip {
+    font-size: 13px; border: 1px solid var(--line); border-radius: 999px;
+    padding: 4px 12px; background: #fbfdfd;
+  }
+  .specs { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 14px; }
+  .specs li {
+    list-style: none; font-size: 13.5px; color: var(--muted);
+    display: flex; justify-content: space-between; gap: 16px; padding: 3px 0;
+  }
+  .specs li b { color: var(--ink); font-weight: 600; text-align: right; }
+  .card .note { margin-top: 14px; font-size: 12.5px; color: #8a6d3b; background: #fdf8ec; border-radius: 8px; padding: 8px 12px; }
+  .card .more { margin-top: auto; padding-top: 18px; font-size: 14px; font-weight: 600; }
+
+  .manual {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    background: var(--teal-deep); color: #fff; border-radius: 16px; padding: 28px 30px; margin-bottom: 40px;
+  }
+  .manual h3 { font-size: 20px; }
+  .manual p { font-size: 14px; color: #cfe6e3; margin-top: 4px; }
+  .manual a { flex-shrink: 0; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 22px 0 34px; color: var(--muted); font-size: 13px;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    .cards { grid-template-columns: 1fr; }
+    .hero { padding: 40px 24px; }
+    .hero h1 { font-size: 30px; }
+    header nav a { margin-left: 14px; }
+    .manual { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
-<h1>BioLink</h1>
-<p>敬畏每一滴生命的纯粹，</p>
-<p>本站建设中。</p>
+<div class="wrap">
+
+  <header>
+    <a class="brand" href="/">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <path d="M17 2C17 2 6 14.5 6 21a11 11 0 0 0 22 0C28 14.5 17 2 17 2Z" fill="#0e6b62"/>
+        <path d="M12.5 21.5a4.5 4.5 0 0 0 4.5 4.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span><b>BioLink</b><small>智能水族生态</small></span>
+    </a>
+    <nav>
+      <a href="#products">产品</a>
+      <a href="https://docbiolink.pages.dev/" target="_blank" rel="noopener">说明书</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>敬畏每一滴生命的纯粹</h1>
+    <p>BioLink 是为鱼缸亲手做的智能设备：补水、滴定、测温，把每天重复的活交给机器，把看鱼的时间还给你。</p>
+    <div class="cta">
+      <a class="btn btn-light" href="#products">看看产品</a>
+      <a class="btn btn-ghost" href="https://docbiolink.pages.dev/" target="_blank" rel="noopener">在线说明书</a>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2>产品</h2>
+    <p class="section-sub">每一款都是实物实测、自己先用着的设备。</p>
+    <div class="cards">
+
+      <article class="card">
+        <span class="tag">已在拼多多上架</span>
+        <h3>智能自动补水器</h3>
+        <p>光学探头感应水位，缺水自动补水；局域网内随时查看水温与补水记录，补水参数、水泵档位都能调。</p>
+        <div class="chips">
+          <span class="chip">光电探头</span>
+          <span class="chip">实时测温</span>
+          <span class="chip">24h 温度曲线</span>
+          <span class="chip">3 档可调</span>
+          <span class="chip">超时防溢流</span>
+        </div>
+        <ul class="specs">
+          <li><span>适用水质</span><b>仅限淡水缸</b></li>
+          <li><span>温度探头</span><b>进口高精度温度探头</b></li>
+          <li><span>玻璃厚度</span><b>≤ 9mm</b></li>
+          <li><span>附赠水管</span><b>2m 高柔硅胶管</b></li>
+          <li><span>扬程</span><b>≥ 1.5m</b></li>
+          <li><span>供电</span><b>5V 2A Type-C（不含适配器）</b></li>
+          <li><span>连接方式</span><b>局域网，不支持远程查看</b></li>
+        </ul>
+        <p class="note">提醒：水泵工作时有运行声音，对声音敏感的朋友请慎重考虑。</p>
+        <a class="more" href="https://docbiolink.pages.dev/#ato" target="_blank" rel="noopener">补水器说明书 →</a>
+      </article>
+
+      <article class="card">
+        <span class="tag">说明书已上线</span>
+        <h3>智能滴定泵</h3>
+        <p>双通道微量元素自动滴定：智能排班把一天的量拆开滴加，回抽防沉淀，滴了多少都有统计。</p>
+        <div class="chips">
+          <span class="chip">双通道</span>
+          <span class="chip">智能自动排班</span>
+          <span class="chip">回抽防沉淀</span>
+          <span class="chip">滴加统计</span>
+          <span class="chip">呼吸灯状态显示</span>
+        </div>
+        <ul class="specs">
+          <li><span>任务模式</span><b>多种任务模式</b></li>
+          <li><span>控制方式</span><b>局域网 Web 控制台</b></li>
+          <li><span>供电</span><b>5V 2A</b></li>
+        </ul>
+        <a class="more" href="https://docbiolink.pages.dev/" target="_blank" rel="noopener">查看完整说明书 →</a>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="manual">
+    <div>
+      <h3>在线互动说明书</h3>
+      <p>安装步骤、参数说明、使用注意事项，都在说明书站里，一站讲清。</p>
+    </div>
+    <a class="btn btn-light" href="https://docbiolink.pages.dev/" target="_blank" rel="noopener">打开说明书站</a>
+  </section>
+
+  <footer>
+    <span>BioLink · 敬畏每一滴生命的纯粹</span>
+    <span>© 2026 BioLink</span>
+  </footer>
+
+</div>
 </body>
 </html>
